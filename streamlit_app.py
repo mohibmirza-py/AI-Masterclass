@@ -1,9 +1,9 @@
 from groq import Groq
 import streamlit as st
+import os
 
-
-api_key = st.secrets['GROQ_API_KEY']
-client = Groq(api_key=api_key)
+os.environ["GROQ_API_KEY"]  = st.secrets["GROQ_API_KEY"]
+client = Groq()
 
 def get_completion(system_prompt, conversation_history):
 
