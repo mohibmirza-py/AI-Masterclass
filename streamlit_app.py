@@ -1,11 +1,9 @@
 from groq import Groq
-from dotenv import load_dotenv
 import streamlit as st
 
-# Load .env file
-load_dotenv()
 
-client = Groq()
+api_key = st.secrets['GROQ_API_KEY']
+client = Groq(api_key=api_key)
 
 def get_completion(system_prompt, conversation_history):
 
@@ -53,7 +51,7 @@ def main():
         
         # Add assistant's response to conversation history
         st.session_state.messages.append({"role": "assistant", "content": response})
-        
+
         with st.chat_message("assistant"):
             st.markdown(response)
 
